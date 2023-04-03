@@ -14,7 +14,7 @@ def index():
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt=generate_prompt(animal),
-            temperature=0.6,
+            temperature=0.6, # Randomness
         )
         return redirect(url_for("index", result=response.choices[0].text))
 
@@ -23,6 +23,9 @@ def index():
 
 
 def generate_prompt(animal):
+    """
+    Prompt를 동적으로 교체 
+    """
     return """Suggest three names for an animal that is a superhero.
 
 Animal: Cat
